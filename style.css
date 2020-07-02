@@ -1,0 +1,12 @@
+body {
+    background-color: #ffc600;
+}
+
+#To-Do-or-Not-To-Do {
+    font-size: x-large;
+    text-align: center;
+}
+
+#add-todo {
+    text-align: center;
+}
