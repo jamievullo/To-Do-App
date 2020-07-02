@@ -4,7 +4,7 @@ body {
 
 }
 
-#To-Do-or-Not-To-Do {
+#to-do-or-not-to-do {
     font-size: x-large;
     text-align: center;
 }
@@ -16,4 +16,23 @@ body {
 #add-button {
     background-color: #364182;
     color:  white;
+}
+
+#todos {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#todo-delete-button {
+    color: white;
+    background-color: orangered;
+}
+
+#todo-completed-button {
+    color: white;
+    background-color: green;
+}
+
+#tasks {
+    margin-top: 10px;
 }
