@@ -1,5 +1,7 @@
 body {
-    background-color: #ffc600;
+    background-image: linear-gradient(#ffc600, white);
+    height: 900px;
+
 }
 
 #To-Do-or-Not-To-Do {
@@ -9,4 +11,9 @@ body {
 
 #add-todo {
     text-align: center;
+}
+
+#add-button {
+    background-color: #364182;
+    color:  white;
 }
