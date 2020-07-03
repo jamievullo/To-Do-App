@@ -5,34 +5,34 @@ body {
 }
 
 #to-do-or-not-to-do {
-    font-size: x-large;
     text-align: center;
 }
 
-#add-todo {
+.title {
     text-align: center;
 }
 
-#add-button {
-    background-color: #364182;
-    color:  white;
-}
-
-#todos {
-    margin-top: 10px;
+#addForm {
     text-align: center;
 }
 
-#todo-delete-button {
-    color: white;
-    background-color: orangered;
+.list-group-item {
+    margin-top: 1em;
+    text-align: center;
+    text-decoration: none;
 }
 
-#todo-completed-button {
+.submit-button {
     color: white;
     background-color: green;
 }
 
-#tasks {
-    margin-top: 10px;
+.btn {
+    margin-left: 1em;
+    color: white;
+    background-color: red;
+}
+
+#items {
+    list-style-type: none;
 }

@@ -2,64 +2,38 @@ document.addEventListener("DOMContentLoaded", function() {
 
 })
 
-let button = document.getElementById("add-button")
+let form = document.getElementById('addForm');
+let itemList = document.getElementById('items');
 
-button.addEventListener("click", function(event) {
-    event.preventDefault()
-    getValue()
-})
+form.addEventListener('submit', addItem);
+itemList.addEventListener('click', deletetask);
 
-function getValue() {
+function addItem(event){
+    event.preventDefault();
 
-    let formInput = document.getElementById("todo-field")
-    let inputValue = formInput.value
-    console.log(inputValue)
-
-    // checks for no input
-    if(isTaskEmpty(inputValue) !== true) {
-        addTodo(inputValue)
+    let inputValue = document.getElementById('item').value;
+    
+    if(isTaskEmpty(inputValue) !== true) {        
+        let li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.appendChild(document.createTextNode(inputValue));
+        
+        let deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn delete';
+        deleteBtn.appendChild(document.createTextNode('X'));
+        li.appendChild(deleteBtn);
+        itemList.appendChild(li);
     }
-    // clears input field after task submitted
-    document.getElementById("todo-field").value = ""
+    // clear form after submission    
+    document.getElementById("item").value = ""
 }
 
-function addTodo(inputValue) {
-
-    let todos = document.getElementById("todos")
-    let todoDiv = `
-        <div id="tasks">
-            <button id="todo-completed-button">
-            O
-            </button>
-            ${inputValue}
-            <button id="todo-delete-button" onClick="deleteTodo()">
-            X
-            </button>
-        </div>`       
-    todos.innerHTML += todoDiv
-
-    deleteTodo()
-    // checkComplete()
-    // currently can only delete one task
-    // can also add a task with no input
+function deletetask(event){
+    if(event.target.classList.contains('delete')){        
+        let li = event.target.parentElement;
+        itemList.removeChild(li);        
+    }
 }
-
-function deleteTodo() {
-    let selectedTodo = document.getElementById("todo-delete-button")
-    selectedTodo.addEventListener("click", function(event) {
-        event.preventDefault()
-        let parent = selectedTodo.parentElement
-        parent.remove()
-    })
-}
-
-// function checkComplete() {
-//     let selectedComplete = document.getElementsByClassName("undone")
-//     selectedComplete.addEventListener("click", function(event) {
-//         event.preventDefault()
-//         selectedComplete
-//     })
-// }
 
 function isTaskEmpty(inputValue) {
     if(inputValue === "") {
