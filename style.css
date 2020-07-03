@@ -8,6 +8,9 @@ body {
     text-align: center;
 }
 
+#header-title {
+    color: grey;
+}
 .title {
     text-align: center;
 }
