@@ -6,7 +6,7 @@ let form = document.getElementById('addForm');
 let itemList = document.getElementById('items');
 
 form.addEventListener('submit', addItem);
-itemList.addEventListener('click', deletetask);
+itemList.addEventListener('click', deleteTask);
 
 function addItem(event){
     event.preventDefault();
@@ -28,7 +28,7 @@ function addItem(event){
     document.getElementById("item").value = ""
 }
 
-function deletetask(event){
+function deleteTask(event){
     if(event.target.classList.contains('delete')){        
         let li = event.target.parentElement;
         itemList.removeChild(li);        
