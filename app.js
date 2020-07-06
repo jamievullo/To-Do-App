@@ -7,11 +7,6 @@ let taskArray = []
 
 let form = document.getElementById('addForm');
 let itemList = document.getElementById('items');
-// let completed = document.querySelectorAll('li')
-// console.log(completed)
-// completed.forEach(task => {
-//     return task.addEventListener('click', isCompleted);
-// })
 
 form.addEventListener('submit', addItem);
 itemList.addEventListener('click', deleteTask);
@@ -25,13 +20,12 @@ function addItem(event){
         appendOrDelete(inputValue)
     }
     taskArray.push(inputValue)
+    // clear form after submission    
     document.getElementById("item").value = ""
     addToLocalStorage()
-    // clear form after submission    
 }
 
 function isCompleted(event) {
-    // let result = stringSplitter(event.target.innerText)
     event.target.style.textDecoration = "line-through"
 }
 
