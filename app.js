@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    getFromLocalStorage()
+    // getFromLocalStorage()
 })
 
 // after task is completed add strikethrough
@@ -19,31 +19,24 @@ function addItem(event){
     let inputValue = document.getElementById('item').value;
     
     if(isTaskEmpty(inputValue) !== true) {        
-        appendOrNotAppend(inputValue)
+        appendOrDelete(inputValue)
     }
     taskArray.push(inputValue)
+    document.getElementById("item").value = ""
     addToLocalStorage()
     // clear form after submission    
-    document.getElementById("item").value = ""
 }
 
 function deleteTask(event){
     if(event.target.classList.contains('delete')){        
         let li = event.target.parentElement;
-        itemList.removeChild(li);        
-        console.log(stringSplitter(li.innerText))
-        let comparisonString = li.innerText
+        itemList.removeChild(li);
 
+        let comparisonString = li.innerText
         taskArray.filter(selectedTask => {
             selectedTask === stringSplitter(comparisonString)
+                // Do something
         })
-
-        // taskArray.forEach(task => {
-        //     if(task === stringSplitter(comparisonString)) {
-
-        //         // deleteFromLocalStorage(task)
-        //     }
-        // })
     }
 }
 
@@ -54,7 +47,7 @@ function isTaskEmpty(inputValue) {
     }
 }
 
-function appendOrNotAppend(inputValue) {
+function appendOrDelete(inputValue) {
 
     let li = document.createElement('li');
         li.className = 'list-group-item';
@@ -73,9 +66,10 @@ function addToLocalStorage() {
 
 function getFromLocalStorage() {
     taskArray = JSON.parse(window.localStorage.getItem('task'))
+    console.log(taskArray)
     if(taskArray.length > 0) {
         taskArray.forEach(task => {
-            appendOrNotAppend(task)
+            appendOrDelete(task)
         })
     }
 }
@@ -84,10 +78,9 @@ function deleteFromLocalStorage(task) {
     window.localStorage.removeItem('task')
 }
 
+// remove 'X' from text content in selected element to be deleted from page and array and local storage
 function stringSplitter(str) {
-
     let newString = str.split('')
     let newerString = newString.pop()
     return newString.join('')
-    console.log(newString)
 }
