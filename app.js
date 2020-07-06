@@ -1,17 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // getFromLocalStorage()
+    getFromLocalStorage()
 })
-
-// after task is completed add strikethrough
-
-let form = document.getElementById('addForm');
-let itemList = document.getElementById('items');
-
-form.addEventListener('submit', addItem);
-itemList.addEventListener('click', deleteTask);
 
 // local storage for local storage
 let taskArray = []
+
+let form = document.getElementById('addForm');
+let itemList = document.getElementById('items');
+// let completed = document.querySelectorAll('li')
+// console.log(completed)
+// completed.forEach(task => {
+//     return task.addEventListener('click', isCompleted);
+// })
+
+form.addEventListener('submit', addItem);
+itemList.addEventListener('click', deleteTask);
 
 function addItem(event){
     event.preventDefault();
@@ -27,16 +30,23 @@ function addItem(event){
     // clear form after submission    
 }
 
+function isCompleted(event) {
+    // let result = stringSplitter(event.target.innerText)
+    event.target.style.textDecoration = "line-through"
+}
+
 function deleteTask(event){
     if(event.target.classList.contains('delete')){        
         let li = event.target.parentElement;
         itemList.removeChild(li);
 
         let comparisonString = li.innerText
-        taskArray.filter(selectedTask => {
-            selectedTask === stringSplitter(comparisonString)
-                // Do something
+        let x = taskArray.filter(selectedTask => {
+            console.log(selectedTask === stringSplitter(comparisonString))
+            return selectedTask !== stringSplitter(comparisonString)
         })
+        taskArray = x
+        addToLocalStorage(taskArray)
     }
 }
 
@@ -52,6 +62,7 @@ function appendOrDelete(inputValue) {
     let li = document.createElement('li');
         li.className = 'list-group-item';
         li.appendChild(document.createTextNode(inputValue));
+        li.addEventListener('click', isCompleted)
         
         let deleteBtn = document.createElement('button');
         deleteBtn.className = 'btn delete';
@@ -65,16 +76,17 @@ function addToLocalStorage() {
 }
 
 function getFromLocalStorage() {
-    taskArray = JSON.parse(window.localStorage.getItem('task'))
-    console.log(taskArray)
-    if(taskArray.length > 0) {
-        taskArray.forEach(task => {
+    tasks = JSON.parse(window.localStorage.getItem('task'))
+    console.log(tasks)
+    if(tasks !== null) {
+        taskArray = tasks
+        tasks.forEach(task => {
             appendOrDelete(task)
         })
     }
 }
 
-function deleteFromLocalStorage(task) {
+function deleteFromLocalStorage() {
     window.localStorage.removeItem('task')
 }
 
