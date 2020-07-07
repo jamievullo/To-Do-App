@@ -1,6 +1,8 @@
 body {
     background-image: linear-gradient(#ffc600, white);
-    height: 900px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
 
 }
 
